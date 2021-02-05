@@ -1,0 +1,11 @@
+#blah {
+  max-width:180px;
+}
+input[type=file]{
+padding:10px;
+background:#2d2d2d;}
+
+input[type=submit]{
+font-size: 20px;
+    font-family: 'Orator Std';
+}

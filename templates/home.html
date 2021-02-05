@@ -1,0 +1,55 @@
+<html>
+<head>
+
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
+    <meta charset=utf-8 />
+
+    <title>Diabetic-Retinopathy-Detection</title>
+    <link rel='stylesheet' href='/static/css/styles.css'>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
+
+    <![endif]-->
+    <style>
+  article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+</style>
+</head>
+
+    <body bgcolor=#92a8d1>
+    <script src='/static/javascript/script.js'></script>
+
+
+        <center>
+
+            <div class="container" style="min-height:100% width:80%">
+        <h1>Diabetic-Retinopathy-Detection</h1><br>
+            <img src='/static/images/welcome.png' alt="Diabetic-Retinopathy-Detection">
+        <br><br><br><br><br><br><br>
+            </div>
+                <div class="container" style="min-height:100% width:80%">
+<!--        <form method="POST" action="/predict" enctype="multipart/form-data">-->
+<!--            <img id="blah" src="http://placehold.it/180" alt="your image" name="blah" />-->
+<!--            <br><br><br><br>-->
+<!--               Select image to upload:-->
+<!--            <input type='file'  id="blah1" name="blah1" />-->
+
+<!--            <br><br>-->
+
+<!--            <input type="submit" value="Predict" >-->
+<!--        </form> </div>-->
+<!--        </form>-->
+
+            <form method="POST" action="/predict" enctype="multipart/form-data">
+                <p><input type="file" name="file"></p>
+                <p><input type="submit" value="Submit"></p>
+            </form>
+
+
+        
+    </center>
+
+    </body>
+</html>

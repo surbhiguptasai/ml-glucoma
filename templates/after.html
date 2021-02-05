@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Python Programming Tutorials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body bgcolor=#a3cfb4>
+<div class="container" style="min-height:100% width:80%">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block body %}{% endblock %}
+</div>
+<div class="container" style="min-height:100% width:80%">
+    <center>
+
+        <h1>  PREDICTION : Diabetic Retinopathy </h1>
+
+
+    {%if data == 0 %}
+    <h1>You dont have Diabetic Retinopathy</h1>
+
+    {%elif data == 1 %}
+    <h1>You have been diagnozed  with Mild Diabetic Retinopathy . </h1>
+
+        {%elif data == 2 %}
+        <h1>You  have been diagnozed  ith Moderate Diabetic Retinopathy  </h1>
+
+        {%elif data == 3 %}
+        <h1>You  have been diagnozed  Severe Retinopathy. Please Consult Doctor. </h1>
+
+        {%elif data ==4 %}
+        <h1>You  have been diagnozed  Proliferative DR. Please Consult Doctor. </h1>
+
+
+    {% endif %}
+        <br><br>
+    <a href='/'>go back to home page</a>
+
+    </center>
+</div>
+</body>
+
+</html>
