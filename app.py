@@ -1,16 +1,14 @@
 from flask import Flask, request,jsonify,render_template,flash
-import pickle
+
 import os
 from tensorflow.keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
-from PIL import Image
+
 import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
+
 from tensorflow.keras.models import load_model
-import pandas as pd
+
 import numpy as np
-from tensorflow.keras.preprocessing import image
-import io
+
 import cv2
 
 app = Flask(__name__)
