@@ -10,6 +10,10 @@ from tensorflow.keras.models import load_model
 import numpy as np
 
 import cv2
+import boto3
+from io import BytesIO
+import matplotlib.image as mpimg
+import io
 
 app = Flask(__name__)
 
@@ -20,10 +24,31 @@ def man():
 
 @app.route('/predict', methods=['POST'])
 def home():
+    AWS_ACCESS_KEY_ID=os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY=os.environ.get('AWS_SECRET_ACCESS_KEY')
+
     uploadedfile=request.files['file']
-    uploadedfile.save(os.path.join("temp/images", uploadedfile.filename))
-    img = load_img(os.path.join("temp/images", uploadedfile.filename))
-    arr = img_to_array(img)
+    s3_client = boto3.client('s3',aws_access_key_id=AWS_ACCESS_KEY_ID,
+                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+
+    S3_BUCKET="diabeticretinopathy1"
+    s3=boto3.resource('s3',aws_access_key_id=AWS_ACCESS_KEY_ID,
+                   aws_secret_access_key=AWS_SECRET_ACCESS_KEY).Bucket(S3_BUCKET)
+    #
+    response = s3_client.upload_fileobj(uploadedfile, S3_BUCKET, uploadedfile.filename,ExtraArgs={'ACL': 'public-read'})
+    flash(response)
+
+    # uploadedfile.save(os.path.join("temp/images", uploadedfile.filename))
+    # img = load_img("https://diabeticretinopathy1.s3.amazonaws.com/13_right.jpeg")
+    object = s3.Object(uploadedfile.filename)
+
+
+    # img = load_img(object.get()['Body'].read())
+    arr = mpimg.imread(BytesIO(object.get()['Body'].read()), 'jpeg')
+
+
+    # img = load_img(io.BytesIO(object.get()['Body'].read()))
+    # arr = img_to_array(img)
     dim1 = arr.shape[0]
     dim2 = arr.shape[1]
     dim3 = arr.shape[2]
